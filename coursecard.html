@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Course cards</title>
+    <style>
+        body > div{
+            display: grid;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        @media screen and (max-width:600px) {
+            body > div {
+                grid-template-columns: auto;
+            }
+        }
+        @media screen and (min-width:600px) {
+            body > div {
+
+                grid-template-columns: auto auto auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+        <input id="course" type="text" placeholder="Add Course" /><br/><br/>
+        <input id="course_d" type="text" placeholder="Add course details" /><br/><br/>
+        <input id="submit" type="submit" value="ADD"/>
+    </form>
+    <div id="#course-card-container">
+
+    </div>
+    <script>
+        document.querySelector("form").addEventListener("submit", createCard);
+
+        function createCard(event){
+            event.preventDefault();
+            var course = document.querySelector("#course").value;
+            var course_d = document.querySelector("#course_d").value;
+
+
+
+            var div_title = document.createElement("div");
+            div_title.textContent=course;
+            div_title.style.fontSize="30px";
+            div_title.style.fontWeight="bold";
+
+            var div_des = document.createElement("div");
+            div_des.textContent=course_d;
+            div_des.style.margin="20px 0";
+            div_des.style.fontSize="19px";
+
+            var but_1 = document.createElement("button");
+            but_1.innerHTML="DETAILS";
+            but_1.style.marginRight="10px"
+
+            var but_2  = document.createElement("button");
+            but_2.innerHTML="APPLY";
+            but_2.style.marginLeft="10px"
+
+            var div_f = document.createElement("div");
+            div_f.append(but_1, but_2);
+
+
+            var div_cont = document.createElement("div");
+
+            div_cont.append(div_title, div_des, div_f);
+
+            div_cont.style.border= "1px solid red";
+            /*div_cont.style.margin="16px";*/
+            div_cont.style.padding ="10px";
+            
+            var main_div = document.getElementById("#course-card-container");
+            main_div.append(div_cont);
+    
+
+            
+
+
+        }
+    </script>
+</body>
+</html>
